@@ -1,30 +1,30 @@
 package hangman.resource;
 
 import hangman.core.Word;
-import jdk.dynalink.beans.StaticClass;
+import hangman.io.Input;
 
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.Random;
-import java.util.Stack;
-import java.util.random.RandomGenerator;
 
 public class Dictionary {
     public static final String PATH_WORD = "/hangman/resource/dictionary.txt";
+
+    private static final Dictionary INSTANCE = new Dictionary();
     private List<String> listWord;
     private Random random = new Random();
 
-    public Dictionary()throws Exception{
-        //O arquivo .txt está junto com as classes então ele deve ser acessado pelo recurso de reflection
-        URL url = getClass().getResource(PATH_WORD);
-        listWord = Files.readAllLines(Path.of(url.toURI()));
-        System.out.println(listWord);
+    //Popula uma lista a partir de um método static da classe de IO (Input)
+    private Dictionary(){
+        listWord = Input.readLinesfromFile(PATH_WORD);
     }
 
-    public String nextWord(){
-        return listWord.get(random.nextInt(0, listWord.size()));
+    public Word nextWord(){
+        return new Word(listWord.get(random.nextInt(0, listWord.size())));
+    }
+
+    //Foi aplicado o desig pattern singleton para não haver outros Dictionary.
+    public static Dictionary instance(){
+        return INSTANCE;
     }
 
 }

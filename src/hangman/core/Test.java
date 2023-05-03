@@ -6,9 +6,9 @@ import java.util.Arrays;
 
 public class Test {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) {
 
-        Dictionary dictionary = new Dictionary();
+        Dictionary dictionary = Dictionary.instance();
         System.out.println(dictionary.nextWord());
     }
 }
