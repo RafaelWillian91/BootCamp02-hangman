@@ -1,7 +1,8 @@
-package hangman.core;
+package hangman.test;
 
 import hangman.resource.Dictionary;
 
+import java.io.PrintWriter;
 import java.util.Arrays;
 
 public class Test {
@@ -10,5 +11,6 @@ public class Test {
 
         Dictionary dictionary = Dictionary.instance();
         System.out.println(dictionary.nextWord());
+
     }
 }

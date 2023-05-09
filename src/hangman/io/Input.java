@@ -16,10 +16,10 @@ public final class Input {
     private static final Scanner SCANNER = new Scanner(System.in);
     private Input(){}
 
+    //Faz a leitura do arquivo .txt e retorna uma list de Strings
     public static List<String> readLinesfromFile (String path){
         //O arquivo .txt está junto com as classes então ele deve ser acessado pelo recurso de reflection
         URL url = Input.class.getResource(path);
-
 
         if(url == null){
             throw new RuntimeException("File is found" + path);
@@ -33,7 +33,8 @@ public final class Input {
 
     }
 
-    //Como não é para fechar o Scanner ele foi criado como atributo estático da classe
+    //Método que recebe uma letra de tentativa.
+    //Como não é para fechar o Scanner ele foi criado como atributo estático da classe sem fechamento no fim.
     public static String readFromKeyboard(String message){
         //Se a menssagem não é nula
         if (!Objects.isNull(message)){
